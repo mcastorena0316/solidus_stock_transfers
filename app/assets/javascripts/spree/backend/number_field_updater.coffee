@@ -18,8 +18,10 @@ class NumberFieldUpdater
     @showReadOnly(id)
 
   @successDiscardHandler: (id, newNumber) ->
-    $("#number-update-#{id} span").text(newNumber)
-    $("[data-transfer-item-id='#{id}']").fadeOut().remove()
+    $("#number-update-#{id} span").text(newNumber).hide()
+    $("#number-update-#{id} [data-rejection-reason]").removeAttr("hidden")
+    toggleButtonVisibility('reject', id, false)
+    toggleButtonVisibility('save', id, false)
 
   toggleReadOnly = (id, show) ->
     toggleButtonVisibility('edit', id, show)

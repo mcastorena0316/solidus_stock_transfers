@@ -5,6 +5,6 @@
     <%= link_to_with_icon 'cancel', t('spree.actions.cancel'), '#', no_text: true, data: { action: 'cancel', id: resource.id } %>
   <% else %>
     <%= link_to_with_icon 'check', t('spree.actions.update'), '#', no_text: true, data: update_data.merge(action: 'save', id: resource.id) %>
-    <%= link_to_with_icon 'cancel', t('spree.actions.reject'), '#', no_text: true, data: { action: 'reject', id: resource.id, toggle: "modal", target: "reject-transfer-items" } %>
+    <%= link_to_with_icon 'trash', t('spree.actions.reject'), '#', no_text: true, data: { action: 'reject', id: resource.id, toggle: "modal", target: "reject-transfer-items" } %>
   <% end %>
 <% end %>

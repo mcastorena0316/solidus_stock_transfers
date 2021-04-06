@@ -1,8 +1,10 @@
 <% if show_actions %>
-  <%= render partial: 'spree/admin/shared/number_field_update_cell', locals: { resource_id: item.id, field_tag: "#{quantity_type}_quantity", number_value: item.expected_quantity } %>
+  <%= render partial: 'spree/admin/shared/number_field_update_cell', locals: { resource_id: item.id, field_tag: "#{quantity_type}_quantity", number_value: item.expected_quantity, rejection_reason: item.rejection_reason.present? } %>
   <td class="actions <%= quantity_type %>">
-    <%= render partial: 'spree/admin/shared/number_field_update_actions', locals: { resource: item, update_data: {}, quantity_type: quantity_type } %>
-    <%= link_to_with_icon 'trash', t('spree.actions.delete'), '#', no_text: true, data: { action: 'remove', id: item.id } if quantity_type == 'expected' && can?(:destroy, item) %>
+    <% if item.rejection_reason.blank? %>
+      <%= render partial: 'spree/admin/shared/number_field_update_actions', locals: { resource: item, update_data: {}, quantity_type: quantity_type } %>
+      <%= link_to_with_icon 'trash', t('spree.actions.delete'), '#', no_text: true, data: { action: 'remove', id: item.id } if quantity_type == 'expected' && can?(:destroy, item) %>
+    <% end %>
   </td>
 <% else %>
   <td><%= item.send("#{quantity_type}_quantity") %></td>
