@@ -34,6 +34,7 @@ en:
     are_you_sure_ship_stock_transfer: Are you sure you want to ship this stock transfer?
     back_to_stock_transfers_list: Back to Stock Transfers List
     close_stock_transfer:
+      default: Close Stock Transfer
       confirm: |-
         Are you sure you want to close this stock transfer?
 
@@ -71,4 +72,5 @@ en:
     stock_transfers: Stock Transfers
     transfer_items: Transfer Items
     unable_to_create_stock_transfer: Unable to create the stock transfer
+    rejected: Rejected
     rejection_reason: Rejection Reason

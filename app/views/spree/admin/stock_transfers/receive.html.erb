@@ -7,7 +7,7 @@
     <%= button_link_to t('spree.back_to_stock_transfers_list'), admin_stock_transfers_path %>
   </li>
   <li>
-    <%= button_link_to t('spree.close'),
+    <%= button_link_to t('spree.close_stock_transfer.default'),
       close_admin_stock_transfer_path(@stock_transfer),
       method: 'put',
       data: { confirm: t('spree.close_stock_transfer.confirm') } %>
