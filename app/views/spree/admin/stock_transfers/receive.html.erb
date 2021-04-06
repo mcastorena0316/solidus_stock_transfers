@@ -1,4 +1,5 @@
 <% admin_breadcrumb("#{t('spree.receiving')} #{@stock_transfer.number}") %>
+<%= render "reject_item_modal" %>
 
 
 <% content_for :page_actions do %>
@@ -23,16 +24,7 @@
   </div>
 </div>
 
-<fieldset>
-  <legend align="center"><%= t('spree.variant_to_be_received') %></legend>
-  <div data-hook="transfer_item_selection">
-    <%= hidden_field_tag :stock_transfer_number, @stock_transfer.number %>
-    <%= hidden_field_tag :variant_display_attributes, @variant_display_attributes.to_json %>
-    <%= text_field_tag :transfer_item_variant_id, "", class: "variant_autocomplete fullwidth" %>
-  </div>
-</fieldset>
-
 <fieldset id='received-transfer-items'>
   <legend align="center"><%= t('spree.received_items') %></legend>
-  <%= render partial: 'transfer_item_table', locals: { transfer_items: @received_items, show_expected: false, show_received: true, show_actions: true } %>
+  <%= render partial: 'transfer_item_table', locals: { transfer_items: @received_items, show_expected: false, show_received: true, show_actions: true, show_rejection_reason: false } %>
 </fieldset>

@@ -41,7 +41,7 @@ module Spree
       end
 
       def permitted_transfer_item_attributes
-        [:variant_id, :expected_quantity, :received_quantity]
+        [:variant_id, :expected_quantity, :received_quantity, :rejection_reason]
       end
     end
   end

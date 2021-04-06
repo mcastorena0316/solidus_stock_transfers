@@ -41,10 +41,10 @@
       <label><%= Spree::StockTransfer.human_attribute_name(:shipped_at) %></label>
       <p><%= @stock_transfer.shipped_at.try(:to_date) %></p>
     </div>
-  </div> 
+  </div>
 </fieldset>
 
 <fieldset>
   <legend><%= plural_resource_name(Spree::TransferItem) %></legend>
-  <%= render partial: 'transfer_item_table', locals: { transfer_items: @stock_transfer.transfer_items, show_expected: true, show_received: true, show_actions: false } %>
+  <%= render partial: 'transfer_item_table', locals: { transfer_items: @stock_transfer.transfer_items, show_expected: true, show_received: true, show_actions: false, show_rejection_reason: true } %>
 </fieldset>

@@ -19,7 +19,7 @@ module Spree
       create.before :authorize_transfer_attributes!
 
       def receive
-        @received_items = @stock_transfer.transfer_items.received
+        @received_items = @stock_transfer.transfer_items
       end
 
       def finalize

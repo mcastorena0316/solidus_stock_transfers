@@ -4,6 +4,13 @@
     a.fa-check {
       display: none;
     }
+
+    &.received {
+      a.fa-cancel,
+      a.fa-check {
+        display: inline-block;
+      }
+    }
   }
   .js-number-update-input { display: none; }
 
