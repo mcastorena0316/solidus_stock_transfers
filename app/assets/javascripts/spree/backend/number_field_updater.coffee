@@ -17,6 +17,10 @@ class NumberFieldUpdater
     @hideForm(id)
     @showReadOnly(id)
 
+  @successDiscardHandler: (id, newNumber) ->
+    $("#number-update-#{id} span").text(newNumber)
+    $("[data-transfer-item-id='#{id}']").fadeOut().remove()
+
   toggleReadOnly = (id, show) ->
     toggleButtonVisibility('edit', id, show)
     toggleButtonVisibility('remove', id, show)

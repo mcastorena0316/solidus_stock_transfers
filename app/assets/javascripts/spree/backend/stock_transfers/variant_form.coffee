@@ -70,7 +70,7 @@ class VariantForm
     receivedItem =
       id: stockTransfer.received_item.id
       variant: stockTransfer.received_item.variant
-      received_quantity: stockTransfer.received_item.received_quantity
+      received_quantity: stockTransfer.received_item.expected_quantity
     successHandler(receivedItem, true)
     Spree.StockTransfers.ReceivedCounter.updateTotal()
     show_flash('success', Spree.translations.received_successfully)

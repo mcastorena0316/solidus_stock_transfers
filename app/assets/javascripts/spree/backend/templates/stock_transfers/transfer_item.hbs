@@ -31,16 +31,28 @@
   <td id="number-update-{{id}}">
     {{#if isReceiving }}
       <span class='js-number-update-text'>{{receivedQuantity}}</span>
-      <input class="fullwidth js-number-update-input" name="received_quantity" type="number" value="">
+      <input class="fullwidth js-number-update-input" name="received_quantity" type="number" value={{receivedQuantity}}>
     {{ else }}
       <span class='js-number-update-text'>{{expectedQuantity}}</span>
       <input class="fullwidth js-number-update-input" name="expected_quantity" type="number" value="">
     {{/if}}
   </td>
-  <td class="actions">
-    <a class="fa fa-edit icon_link with-tip no-text" data-action="edit" data-id="{{id}}" href="#"></a>
-    <a class="fa fa-check icon_link with-tip no-text" data-action="save" data-id="{{id}}" href="#"></a>
-    <a class="fa fa-cancel icon_link with-tip no-text" data-action="cancel" data-id="{{id}}" href="#"></a>
+  {{#if isReceiving}}
+    <td class="actions received">
+  {{else}}
+    <td class="actions">
+  {{/if}}
+    {{#unless isReceiving}}
+      <a class="fa fa-edit icon_link with-tip no-text" data-action="edit" data-id="{{id}}" href="#"></a>
+      <a class="fa fa-check icon_link with-tip no-text" data-action="save" data-id="{{id}}" href="#"></a>
+      <a class="fa fa-cancel icon_link with-tip no-text" data-action="cancel" data-id="{{id}}" href="#"></a>
+    {{/unless}}
+
+    {{#if isReceiving}}
+      <a class="fa fa-check icon_link with-tip no-text" data-action="save" data-id="{{id}}" href="#"></a>
+      <a class="fa fa-cancel icon_link with-tip no-text" data-action="reject" data-id="{{id}}" href="#"></a>
+    {{/if}}
+
     {{#unless isReceiving }}
       <a class="fa fa-trash icon_link with-tip no-text" data-action="remove" data-id="{{id}}" href="#"></a>
     {{/unless}}

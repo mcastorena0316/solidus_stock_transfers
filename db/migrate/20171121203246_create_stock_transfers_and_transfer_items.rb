@@ -30,6 +30,7 @@ class CreateStockTransfersAndTransferItems < ActiveRecord::Migration[4.2]
       t.integer "stock_transfer_id", null: false
       t.integer "expected_quantity", default: 0, null: false
       t.integer "received_quantity", default: 0, null: false
+      t.string "rejection_reason"
       t.datetime "created_at"
       t.datetime "updated_at"
       t.datetime "deleted_at"
@@ -40,5 +41,6 @@ class CreateStockTransfersAndTransferItems < ActiveRecord::Migration[4.2]
 
   def down
     drop_table :spree_stock_transfers
+    drop_table :spree_stock_transfer_items
   end
 end

@@ -21,6 +21,8 @@ en:
         one: Transfer Item
         other: Transfer Items
   spree:
+    actions:
+      reject: Reject
     admin:
       tab:
         stock_transfers: Stock Transfers
@@ -69,3 +71,4 @@ en:
     stock_transfers: Stock Transfers
     transfer_items: Transfer Items
     unable_to_create_stock_transfer: Unable to create the stock transfer
+    rejection_reason: Rejection Reason

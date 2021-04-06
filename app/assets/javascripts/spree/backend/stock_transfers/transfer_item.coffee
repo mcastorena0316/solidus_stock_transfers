@@ -5,6 +5,7 @@ class TransferItem
     @receivedQuantity = options.receivedQuantity
     @expectedQuantity = options.expectedQuantity
     @stockTransferNumber = options.stockTransferNumber
+    @rejectionReason = options.rejectionReason
 
   create: (successHandler, errorHandler) ->
     Spree.ajax
@@ -40,6 +41,18 @@ class TransferItem
     Spree.ajax
       url: Spree.routes.update_transfer_items_api(@stockTransferNumber, @id)
       type: "DELETE"
+      success: (transferItem) ->
+        successHandler(transferItem)
+      error: (errorData) ->
+        errorHandler(errorData)
+
+  reject: (successHandler, errorHandler) ->
+    itemAttrs = { received_quantity: 0, rejection_reason: @rejectionReason }
+    Spree.ajax
+      url: Spree.routes.update_transfer_items_api(@stockTransferNumber, @id)
+      type: "PUT"
+      data:
+        transfer_item: itemAttrs
       success: (transferItem) ->
         successHandler(transferItem)
       error: (errorData) ->

@@ -31,12 +31,40 @@ class CountUpdateForms
       transferItem = new Spree.TransferItem(itemAttributes)
       transferItem.update(successHandler, errorHandler)
 
+    # Discard
+    $('body').on 'click', '#listing_transfer_items [data-action="reject"]', (ev) =>
+      ev.preventDefault()
+      modal = $("##{ev.target.dataset.target}")
+      submitBtn = modal.find(".btn-primary")
+      submitBtn.attr("data-transfer-item-id", ev.target.dataset.id)
+      modal.modal()
+
+    # Reject
+    $('body').on 'click', '[data-action="reject-item"]', (ev) =>
+      ev.preventDefault()
+      rejectionReason = $("#rejection_reason").val()
+      stockTransferNumber = $("#stock_transfer_number").val()
+      $("#reject-transfer-items").modal("hide")
+      itemAttributes =
+        id: ev.target.dataset.transferItemId
+        stockTransferNumber: stockTransferNumber
+        rejectionReason: rejectionReason
+      transferItem = new Spree.TransferItem(itemAttributes)
+      transferItem.reject(successDiscardHandler, errorHandler)
+
+
+
   successHandler = (transferItem) =>
     if $('#received-transfer-items').length > 0
       Spree.NumberFieldUpdater.successHandler(transferItem.id, transferItem.received_quantity)
       Spree.StockTransfers.ReceivedCounter.updateTotal()
     else
       Spree.NumberFieldUpdater.successHandler(transferItem.id, transferItem.expected_quantity)
+    show_flash("success", Spree.translations.updated_successfully)
+
+  successDiscardHandler = (transferItem) =>
+    Spree.NumberFieldUpdater.successDiscardHandler(transferItem.id, transferItem.expected_quantity)
+    Spree.StockTransfers.ReceivedCounter.updateTotal()
     show_flash("success", Spree.translations.updated_successfully)
 
   errorHandler = (errorData) =>
