@@ -2,8 +2,6 @@ module Spree
   class StockTransfer < Spree::Base
     class InvalidTransferMovement < StandardError; end
 
-    acts_as_paranoid
-
     has_many :stock_movements, as: :originator
     has_many :transfer_items, inverse_of: :stock_transfer
 
